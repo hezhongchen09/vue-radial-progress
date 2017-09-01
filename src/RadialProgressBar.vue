@@ -141,10 +141,12 @@
 			scaleBarTextList: {
 				type: Array,
 				required: false,
-				default: [
-					{ percentage: 0, text: '0%' },
-					{ percentage: 100, text: '100%' }
-				]
+				default: function () {
+					return [
+						{ percentage: 0, text: '0%' },
+						{ percentage: 100, text: '100%' }
+					]
+				}
 			},
 			scaleBarTextFontSize: {
 				type: Number,
@@ -187,11 +189,13 @@
 			backgroundBarSectionList: {
 				type: Array,
 				required: false,
-				default: [
-					{ sequence: 1, floor: 0, ceiling: 20, percentage: 20/60, color: 'red', linecap: 'round' },
-					{ sequence: 2, floor: 20, ceiling: 40, percentage: (40-20)/60, color: 'blue', linecap: 'butt' },
-					{ sequence: 3, floor: 40, ceiling: 60, percentage: (60-40)/60, color: 'green', linecap: 'round' }
-				]
+				default: function () {
+					return [
+						{ sequence: 1, floor: 0, ceiling: 20, percentage: 20/60, color: 'red', linecap: 'round' },
+						{ sequence: 2, floor: 20, ceiling: 40, percentage: (40-20)/60, color: 'blue', linecap: 'butt' },
+						{ sequence: 3, floor: 40, ceiling: 60, percentage: (60-40)/60, color: 'green', linecap: 'round' }
+					]
+				}
 			},
 			backgroundBarTextOffset: {
 				type: Number,
@@ -207,19 +211,21 @@
 			backgroundScaleBarTextList: {
 				type: Array,
 				required: false,
-				default: [
-					{ percentage: 0, text: 0 },
-					{ percentage: 10, text: 10 },
-					{ percentage: 20, text: 20 },
-					{ percentage: 30, text: 30 },
-					{ percentage: 40, text: 40 },
-					{ percentage: 50, text: 50 },
-					{ percentage: 60, text: 60 },
-					{ percentage: 70, text: 70 },
-					{ percentage: 80, text: 80 },
-					{ percentage: 90, text: 90 },
-					{ percentage: 100, text: 100 }
-				]
+				default: function () {
+					return [
+						{ percentage: 0, text: 0 },
+						{ percentage: 10, text: 10 },
+						{ percentage: 20, text: 20 },
+						{ percentage: 30, text: 30 },
+						{ percentage: 40, text: 40 },
+						{ percentage: 50, text: 50 },
+						{ percentage: 60, text: 60 },
+						{ percentage: 70, text: 70 },
+						{ percentage: 80, text: 80 },
+						{ percentage: 90, text: 90 },
+						{ percentage: 100, text: 100 }
+					]
+				}
 			},
 			backgroundScaleBarTextOffset: {
 				type: Number,
