@@ -24,7 +24,7 @@
 				:style="scaleBarStyle"
 				:stroke-dasharray="'1,'+(scaleBarLength-scaleBarSectionNumber-1)/scaleBarSectionNumber"/>
 
-			<text v-if="showScaleBar"
+			<text v-if="showScaleBarText"
 				v-for="scaleText in scaleBarTextList"
 				:dy="-1*scaleBarTextOffset"
 				:text-anchor="scaleText.percentage==100 ? 'end' : 'start'"
@@ -59,7 +59,7 @@
 				:style="backgroundBarStyle"
 				:stroke-linecap="backgroundBarPath.linecap"/>
 
-			<text v-if="showBackgroundBar"
+			<text v-if="showBackgroundBarText"
 				v-for="backgroundBarPath in backgroundBarPathList"
 				text-anchor="start"
 				:dy="backgroundBarTextOffset"
@@ -69,7 +69,7 @@
 				</textPath>
 			</text>
 
-			<text v-if="showBackgroundBar"
+			<text v-if="showBackgroundBarText"
 				:dy="backgroundBarTextOffset"
 				text-anchor="end"
 				:style="'font-size: '+backgroundBarTextFontSize+'px; fill: '+backgroundBarTextColor">
@@ -87,7 +87,7 @@
 				:style="backgroundScaleBarStyle"
 				:stroke-dasharray="'1,'+(backgroundScaleBarLength-backgroundBarScaleSectionNumber-1)/backgroundBarScaleSectionNumber"/>
 
-			<text v-if="showBackgroundScaleBar"
+			<text v-if="showBackgroundScaleBarText"
 				v-for="backgroundScaleBarText in backgroundScaleBarTextList"
 				:dy="backgroundScaleBarTextOffset"
 				:text-anchor="backgroundScaleBarText.percentage==100 ? 'end' : 'middle'"
@@ -278,12 +278,27 @@
 				required: false,
 				default: true
 			},
+			showScaleBarText: {
+				type: Boolean,
+				required: false,
+				default: true
+			},
 			showBackgroundBar: {
 				type: Boolean,
 				required: false,
 				default: true
 			},
+			showBackgroundBarText: {
+				type: Boolean,
+				required: false,
+				default: true
+			},
 			showBackgroundScaleBar: {
+				type: Boolean,
+				required: false,
+				default: true
+			},
+			showBackgroundScaleBarText: {
 				type: Boolean,
 				required: false,
 				default: true
