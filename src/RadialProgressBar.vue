@@ -29,7 +29,7 @@
 				:dy="-1*scaleBarTextOffset"
 				:text-anchor="scaleText.percentage==100 ? 'end' : 'start'"
 				:style="'font-size: '+scaleBarTextFontSize+'px; fill: '+scaleBarTextColor">
-				<textPath xlink:href="#scaleBar" startOffset="{{scaleText.percentage}}%">
+				<textPath xlink:href="#scaleBar" :startOffset="scaleText.percentage+'%'">
 					{{scaleText.text}}
 				</textPath>
 			</text>
@@ -64,14 +64,16 @@
 				text-anchor="start"
 				:dy="backgroundBarTextOffset"
 				:style="'font-size: '+backgroundBarTextFontSize+'px; fill: '+backgroundBarTextColor">
-				<textPath xlink:href="{{'#path'+backgroundBarPath.sequence}}">{{backgroundBarPath.floor}}</textPath>
+				<textPath v-bind="{'xlink:href':'#path'+backgroundBarPath.sequence}" startOffset="0%">
+					{{backgroundBarPath.floor}}
+				</textPath>
 			</text>
 
 			<text v-if="showBackgroundBar"
 				:dy="backgroundBarTextOffset"
 				text-anchor="end"
 				:style="'font-size: '+backgroundBarTextFontSize+'px; fill: '+backgroundBarTextColor">
-				<textPath xlink:href="{{'#path'+backgroundBarPathList[0].sequence}}" startOffset="100%">
+				<textPath v-bind="{'xlink:href':'#path'+backgroundBarPathList[0].sequence}" startOffset="100%">
 					{{backgroundBarPathList[0].ceiling}}
 				</textPath>
 			</text>
@@ -90,7 +92,7 @@
 				:dy="backgroundScaleBarTextOffset"
 				:text-anchor="backgroundScaleBarText.percentage==100 ? 'end' : 'middle'"
 				:style="'font-size: '+backgroundScaleBarTextFontSize+'px; fill: '+backgroundScaleBarTextColor">
-				<textPath xlink:href="#backgroundScaleBar" startOffset="{{backgroundScaleBarText.percentage}}%">
+				<textPath xlink:href="#backgroundScaleBar" :startOffset="backgroundScaleBarText.percentage+'%'">
 					{{backgroundScaleBarText.text}}
 				</textPath>
 			</text>
@@ -203,7 +205,7 @@
 				default: 10
 			},
 			backgroundScaleBarTextList: {
-				type: Object,
+				type: Array,
 				required: false,
 				default: [
 					{ percentage: 0, text: 0 },
@@ -484,7 +486,8 @@
 						endY: endY,
 						floor: this.backgroundBarSectionList[i].floor,
 						ceiling: this.backgroundBarSectionList[i].ceiling,
-						sequence: this.backgroundBarSectionList[i].sequence
+						sequence: this.backgroundBarSectionList[i].sequence,
+						percentage: this.backgroundBarSectionList[i].percentage*100
 					};
 				}
 			}
