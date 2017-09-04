@@ -363,7 +363,7 @@
 				return Math.PI * (this.scaleBarInnerCircleDiameter+5) * (1-this.halfBlankAngle/180)*this.finishedPercentage/100;
 			},
 			indicatorBarDashOffset () {
-				return -1*Math.PI * (this.scaleBarInnerCircleDiameter+5) * (1-this.halfBlankAngle/180)*this.finishedPercentage/100+1;
+				return Math.PI * (this.scaleBarInnerCircleDiameter+5) * (1-this.halfBlankAngle/180)*this.finishedPercentage/100-1;
 			},
 			finishedPercentage () {
 				if (this.totalSteps === 0) {
@@ -456,11 +456,11 @@
 				var endX = this.radius-(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.sin(2*Math.PI*(1-this.halfBlankAngle/180)*this.finishedPercentage/100+this.halfBlankAngle/180*Math.PI);
 				var endY = this.radius+(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.cos(2*Math.PI*(1-this.halfBlankAngle/180)*this.finishedPercentage/100+this.halfBlankAngle/180*Math.PI);
 
-				return 'M'+(this.radius-(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.sin(Math.PI/180*this.halfBlankAngle))
-					+' '+(this.radius+(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.cos(Math.PI/180*this.halfBlankAngle))
+				return 'M'+endX
+					+' '+endY
 					+' A '+(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2)+' '+(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2)
-					+(this.finishedPercentage/100*(1-this.halfBlankAngle/180)>0.5 ? ' 0 1 1 ' : ' 0 0 1 ')
-					+ endX+' '+endY;
+					+(this.finishedPercentage/100*(1-this.halfBlankAngle/180)>0.5 ? ' 0 1 0 ' : ' 0 0 0 ')
+					+ (this.radius-(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.sin(Math.PI/180*this.halfBlankAngle))+' '+(this.radius+(this.scaleBarInnerCircleRadius+(this.indicatorBarWidth-this.scaleBarWidth)/2) * Math.cos(Math.PI/180*this.halfBlankAngle));
 			},
 			backgroundScaleBarPath () {
 				return 'M'+(this.radius-this.backgroundScaleBarInnerCircleRadius * Math.sin(Math.PI/180*this.halfBlankAngle))
